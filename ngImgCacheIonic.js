@@ -1,7 +1,7 @@
-angular.module('ngImgCache', ['ionic.utils'])
+angular.module('ngImgCache',[])
 .run(function($ionicPlatform, $log) {
     ImgCache.options.debug = false;
-    ImgCache.options.chromeQuota = 50*1024*1024;        
+    ImgCache.options.chromeQuota = 50*1024*1024;
 
     $ionicPlatform.ready(function() {
         ImgCache.init(function() {
@@ -35,7 +35,7 @@ angular.module('ngImgCache', ['ionic.utils'])
     return {
         restrict: 'A',
         link: function(scope, el, attrs) {
-            attrs.$observe('ngSrc', function(src) {
+            attrs.$observe('imgSrc', function(src) {
                 ImgCache.isCached(src, function(path, success) {
                     if (success) {
                         ImgCache.useCachedFile(el);
@@ -45,7 +45,6 @@ angular.module('ngImgCache', ['ionic.utils'])
                         });
                     }
                 });
-
             });
         }
     };
